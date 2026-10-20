@@ -1,5 +1,10 @@
 # OS Process Scheduling Simulator — CS313 Assignment 1
 
+**Student Name:** Abdullah Khan  
+**Registration Number:** 9826  
+**Section:** B  
+**Submission Date:** 21 October 2026  
+
 **University:** Abasyn University, Islamabad Campus  
 **Course:** CS313 — Operating System Concepts  
 **Instructor:** Ms. Naveen Ahmed  
@@ -10,15 +15,15 @@
 
 **[Open the OS Process Scheduling Simulator](https://abdullahsatech-eng.github.io/CS313-Operating-Systems/)**
 
-## Project Overview
+## 1. Project Overview
 
 The OS Process Scheduling Simulator is a browser-based application developed for CS313 Assignment 1. It demonstrates CPU process scheduling algorithms and provides a conceptual shared-file access demonstration.
 
 Users can enter process details, select a scheduling algorithm, visualize CPU execution through a Gantt chart, calculate scheduling metrics, and compare algorithm performance.
 
-**Scope:** Assignment 1 only — CPU scheduling and a conceptual shared-file demonstration. This project does not implement the later assignments.
+**Project Scope:** Assignment 1 only — CPU scheduling and a conceptual shared-file demonstration. This project does not implement the later assignments.
 
-## Features
+## 2. Features
 
 - Interactive process input table.
 - Four CPU scheduling algorithms with five supported variants.
@@ -33,23 +38,23 @@ Users can enter process details, select a scheduling algorithm, visualize CPU ex
 - Responsive interface with light and dark styling.
 - Automated tests for scheduling logic.
 
-## Scheduling Algorithms
+## 3. CPU Scheduling Algorithms
 
-### 1. First-Come, First-Served (FCFS)
+### 3.1 First-Come, First-Served (FCFS)
 
 - **Type:** Non-preemptive.
 - Selects the process with the earliest arrival time.
 - Once execution begins, the process continues until completion.
 - Simple to understand and implement, but long processes can delay shorter ones.
 
-### 2. Shortest Job Next (SJN)
+### 3.2 Shortest Job Next (SJN)
 
 - **Type:** Non-preemptive.
-- Selects the process with the shortest burst time among the processes that have arrived.
+- Selects the process with the shortest burst time among processes that have arrived.
 - Runs the selected process until completion.
 - Can reduce average waiting time, but longer processes may experience starvation.
 
-### 3. Round Robin (RR)
+### 3.3 Round Robin (RR)
 
 - **Type:** Preemptive.
 - Uses a configurable time quantum.
@@ -57,7 +62,7 @@ Users can enter process details, select a scheduling algorithm, visualize CPU ex
 - Processes that are unfinished after their quantum return to the ready queue.
 - Provides fair CPU sharing and good responsiveness, depending on the quantum.
 
-### 4. Priority Scheduling
+### 3.4 Priority Scheduling
 
 Supports two modes:
 
@@ -66,11 +71,11 @@ Supports two modes:
 
 **Priority convention:** A lower numerical value indicates a higher priority.
 
-### Tie-Breaking Rules
+### 3.5 Tie-Breaking Rules
 
 When processes have equal selection criteria, arrival time and then input order determine the selection. CPU idle periods are represented as `IDLE` in the Gantt chart.
 
-## Scheduling Metrics and Formulas
+## 4. Scheduling Metrics and Formulas
 
 | Metric | Formula | Description |
 |---|---|---|
@@ -91,15 +96,15 @@ When processes have equal selection criteria, arrival time and then input order 
 
 The throughput interval is calculated from the first arrival to the last completion. If the interval is zero, throughput is defined as zero.
 
-## Gantt Chart and Algorithm Comparison
+## 5. Gantt Chart and Algorithm Comparison
 
 The simulator generates a Gantt chart from the calculated execution timeline. It displays process execution segments, preemption where applicable, and CPU idle periods.
 
 The **Compare All Algorithms** feature runs the supported algorithm variants using the same process data so their results can be compared.
 
-The results help demonstrate the trade-offs between waiting time, response time, fairness, and scheduling efficiency.
+The results demonstrate the trade-offs between waiting time, response time, fairness, and scheduling efficiency.
 
-## Shared-File Access Demonstration
+## 6. Shared-File Access Demonstration
 
 The simulator includes a conceptual demonstration connecting processes to shared-file operations.
 
@@ -113,7 +118,7 @@ The demonstration identifies overlapping file access involving at least one writ
 
 **Important limitation:** This is an educational demonstration only. It does not change the CPU scheduling timeline or calculated metrics. It is not a real file system, synchronization mechanism, mutex/semaphore implementation, or complete operating-system deadlock detector.
 
-## Technologies Used
+## 7. Technologies Used
 
 - **HTML5** — application structure.
 - **CSS3** — styling and responsive layout.
@@ -123,7 +128,7 @@ The demonstration identifies overlapping file access involving at least one writ
 
 The application can run in a modern web browser without a backend server or database.
 
-## Project Files
+## 8. Project Files
 
 | File or Folder | Purpose |
 |---|---|
@@ -139,7 +144,7 @@ The application can run in a modern web browser without a backend server or data
 
 The exact files available depend on the contents of the submitted repository.
 
-## How to Run Locally
+## 9. How to Run Locally
 
 1. Download or clone the repository.
 2. Open the `Assignments/Assignment-01-Process-Scheduling/` folder.
@@ -162,7 +167,7 @@ node tests.js
 
 The existing test report records **52 passed and 0 failed**. Run the tests yourself before submission to confirm the current code produces the same result.
 
-## Testing and Validation
+## 10. Testing and Validation
 
 The documented tests cover:
 
@@ -179,7 +184,7 @@ The documented tests cover:
 
 The project documentation also describes a headless-browser smoke test covering simulation execution, algorithm comparison, input validation, and the shared-file demonstration. This is a smoke test, not a complete UI test suite.
 
-## Requirement Checklist
+## 11. Assignment Requirement Checklist
 
 | Assignment Requirement | Implementation |
 |---|---|
@@ -195,7 +200,7 @@ The project documentation also describes a headless-browser smoke test covering 
 | Process and shared-file interaction | Conceptual shared-file panel |
 | Testing | Automated tests and documented smoke testing |
 
-## Suggested Screenshots for Submission
+## 12. Suggested Screenshots for Submission
 
 Include screenshots of the following, if required by the assignment submission instructions:
 
@@ -208,15 +213,25 @@ Include screenshots of the following, if required by the assignment submission i
 7. Input validation error.
 8. Responsive or mobile layout.
 
-## Conclusion
+## 13. Conclusion
 
 The OS Process Scheduling Simulator demonstrates FCFS, SJN, Round Robin, and Priority Scheduling through an interactive browser-based interface. It calculates scheduling metrics from execution timelines, visualizes process execution, compares algorithm variants, and provides a conceptual shared-file conflict demonstration.
 
-The simulator supports learning about the trade-offs between CPU scheduling strategies, including waiting time, response time, fairness, and potential starvation. The shared-file demonstration introduces the concept of resource conflicts and circular wait without claiming to implement a real operating-system synchronization or deadlock-management system.
+The simulator supports learning about the trade-offs between CPU scheduling strategies, including waiting time, response time, fairness, and potential starvation. The shared-file demonstration introduces resource conflicts and circular wait without claiming to implement a real operating-system synchronization or deadlock-management system.
 
 ---
 
-**CS313 — Operating System Concepts**  
-**Assignment 1 — Abasyn University, Islamabad Campus**  
-**Instructor:** Ms. Naveen Ahmed  
-**Semester:** Fall 2026
+## Student Submission Details
+
+| Field | Details |
+|---|---|
+| Student Name | Abdullah Khan |
+| Registration Number | 9826 |
+| Section | B |
+| Course | CS313 — Operating System Concepts |
+| Assignment | Assignment 1 — Process Scheduling |
+| Instructor | Ms. Naveen Ahmed |
+| University | Abasyn University, Islamabad Campus |
+| Semester | Fall 2026 |
+| Submission Date | 21 October 2026 |
+| Live Project | [OS Process Scheduling Simulator](https://abdullahsatech-eng.github.io/CS313-Operating-Systems/) |
