@@ -1,0 +1,54 @@
+PASS  Invariants: T1 five-process sample [FCFS]
+PASS  Invariants: T1 five-process sample [SJN]
+PASS  Invariants: T1 five-process sample [RR]
+PASS  Invariants: T1 five-process sample [PRIORITY]
+PASS  Invariants: T1 five-process sample [PRIORITY preemptive]
+PASS  Invariants: T2 single process [FCFS]
+PASS  Invariants: T2 single process [SJN]
+PASS  Invariants: T2 single process [RR]
+PASS  Invariants: T2 single process [PRIORITY]
+PASS  Invariants: T2 single process [PRIORITY preemptive]
+PASS  Invariants: T3 identical arrival times [FCFS]
+PASS  Invariants: T3 identical arrival times [SJN]
+PASS  Invariants: T3 identical arrival times [RR]
+PASS  Invariants: T3 identical arrival times [PRIORITY]
+PASS  Invariants: T3 identical arrival times [PRIORITY preemptive]
+PASS  Invariants: T4 different arrival times [FCFS]
+PASS  Invariants: T4 different arrival times [SJN]
+PASS  Invariants: T4 different arrival times [RR]
+PASS  Invariants: T4 different arrival times [PRIORITY]
+PASS  Invariants: T4 different arrival times [PRIORITY preemptive]
+PASS  Invariants: T5 idle before first arrival [FCFS]
+PASS  Invariants: T5 idle before first arrival [SJN]
+PASS  Invariants: T5 idle before first arrival [RR]
+PASS  Invariants: T5 idle before first arrival [PRIORITY]
+PASS  Invariants: T5 idle before first arrival [PRIORITY preemptive]
+PASS  Invariants: T6 identical priorities [FCFS]
+PASS  Invariants: T6 identical priorities [SJN]
+PASS  Invariants: T6 identical priorities [RR]
+PASS  Invariants: T6 identical priorities [PRIORITY]
+PASS  Invariants: T6 identical priorities [PRIORITY preemptive]
+PASS  T1 FCFS CT = 5,8,16,22,24
+PASS  T1 FCFS avg WT = 8, avg TAT = 12.8
+PASS  T1 FCFS throughput = 5/24
+PASS  T1 SJN CT = 5,10,24,16,7
+PASS  T1 SJN avg WT = 5.4, avg TAT = 10.2
+PASS  T10 Priority NP CT = 5,8,24,16,10
+PASS  T9 Priority P CT = 16,4,24,12,7
+PASS  T9 P2 preempts P1 at t=1
+PASS  T9 preempted P1 appears as separate segments
+PASS  T9 avg WT = 5.6
+PASS  T7 RR q=2 CT P1=9,P2=8,P3=5
+PASS  T7 RR slices 0-2 P1, 2-4 P2, 4-5 P3, 5-7 P1, 7-8 P2, 8-9 P1
+PASS  T8 RR: P3 (BT 1 < q) ends early at t=5
+PASS  T5 idle 0-3 then A 3-5; throughput 1/2
+PASS  Tie-break: equal AT/BT -> input order
+PASS  T11 empty list rejected
+PASS  T11 bad values rejected
+PASS  T11 RR quantum 0 rejected
+PASS  T12 FCFS: no overlap so no conflict
+PASS  T12 shared file: conflict P1/P2 found, P3 (later, no overlap) not
+PASS  T12 circular wait flagged as potential deadlock
+PASS  T12 file demo does not alter metrics
+
+52 passed, 0 failed, 52 total

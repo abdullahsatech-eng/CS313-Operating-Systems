@@ -1,0 +1,18 @@
+PASS page loads, 5 sample rows 
+PASS UI FCFS averages ['8.00', '12.80', '8.00', '0.21 proc/unit']
+PASS UI SJN averages ['5.40', '10.20', '5.40', '0.21 proc/unit']
+PASS UI RR averages ['10.20', '15.00', '2.80', '0.21 proc/unit']
+PASS UI Priority NP ['5.60', '10.40', '5.60', '0.21 proc/unit']
+PASS UI Priority preemptive ['5.60', '10.40', '3.00', '0.21 proc/unit']
+PASS Gantt has 7 process segments 
+PASS RR q=2 Gantt segments = 13 slices (hand-counted) 13
+PASS compare table 5 rows 
+PASS invalid input blocks run, shows errors 
+PASS error text mentions Arrival and Burst 
+PASS duplicate id error 
+PASS empty set shows error 
+PASS RR shows ACCESS CONFLICT 
+PASS FCFS shows no conflict for same file 
+PASS mobile: no page-level horizontal overflow 390
+PASS no JS errors []
+17 passed 0 failed
