@@ -1,53 +1,222 @@
 # OS Process Scheduling Simulator — CS313 Assignment 1
-Abasyn University, Islamabad · Operating System Concepts · Instructor: Ms. Naveen Ahmed · Fall 2026
 
-Scope: **Assignment 1 only** (CPU scheduling + a small conceptual shared-file demo).
+**University:** Abasyn University, Islamabad Campus  
+**Course:** CS313 — Operating System Concepts  
+**Instructor:** Ms. Naveen Ahmed  
+**Semester:** Fall 2026  
+**Project:** Operating System Simulation — Assignment 1
 
-## Run
-1. Keep all files in one folder (`index.html`, `style.css`, `scheduler.js`, `script.js`).
-2. Double-click `index.html` (any modern browser). No server, install or internet needed.
-3. Tests (optional, needs Node.js): `node tests.js`
+## Live Demo
 
-## Use
-Edit the process table (or **Load Sample Data**), choose an algorithm (set the quantum for RR, or the mode for Priority), click **Run Simulation**. **Compare All Algorithms** runs every variant on the same data. Invalid input shows an error list and blocks the run.
+**[Open the OS Process Scheduling Simulator](https://abdullahsatech-eng.github.io/CS313-Operating-Systems/)**
 
-## Files
-| File | Purpose |
+## Project Overview
+
+The OS Process Scheduling Simulator is a browser-based application developed for CS313 Assignment 1. It demonstrates CPU process scheduling algorithms and provides a conceptual shared-file access demonstration.
+
+Users can enter process details, select a scheduling algorithm, visualize CPU execution through a Gantt chart, calculate scheduling metrics, and compare algorithm performance.
+
+**Scope:** Assignment 1 only — CPU scheduling and a conceptual shared-file demonstration. This project does not implement the later assignments.
+
+## Features
+
+- Interactive process input table.
+- Four CPU scheduling algorithms with five supported variants.
+- Configurable time quantum for Round Robin.
+- Preemptive and non-preemptive Priority Scheduling.
+- Gantt chart showing execution order and CPU idle periods.
+- Per-process completion, turnaround, waiting, and response times.
+- Throughput calculation.
+- Comparison of scheduling algorithms using the same input data.
+- Conceptual shared-file conflict and potential deadlock demonstration.
+- Input validation with error messages.
+- Responsive interface with light and dark styling.
+- Automated tests for scheduling logic.
+
+## Scheduling Algorithms
+
+### 1. First-Come, First-Served (FCFS)
+
+- **Type:** Non-preemptive.
+- Selects the process with the earliest arrival time.
+- Once execution begins, the process continues until completion.
+- Simple to understand and implement, but long processes can delay shorter ones.
+
+### 2. Shortest Job Next (SJN)
+
+- **Type:** Non-preemptive.
+- Selects the process with the shortest burst time among the processes that have arrived.
+- Runs the selected process until completion.
+- Can reduce average waiting time, but longer processes may experience starvation.
+
+### 3. Round Robin (RR)
+
+- **Type:** Preemptive.
+- Uses a configurable time quantum.
+- Each ready process receives CPU time according to the round-robin queue.
+- Processes that are unfinished after their quantum return to the ready queue.
+- Provides fair CPU sharing and good responsiveness, depending on the quantum.
+
+### 4. Priority Scheduling
+
+Supports two modes:
+
+- **Non-preemptive:** The selected process runs until completion.
+- **Preemptive:** A newly arrived process interrupts the running process when it has a strictly higher priority.
+
+**Priority convention:** A lower numerical value indicates a higher priority.
+
+### Tie-Breaking Rules
+
+When processes have equal selection criteria, arrival time and then input order determine the selection. CPU idle periods are represented as `IDLE` in the Gantt chart.
+
+## Scheduling Metrics and Formulas
+
+| Metric | Formula | Description |
+|---|---|---|
+| Completion Time (CT) | Final completion time | Time at which a process finishes |
+| Turnaround Time (TAT) | CT − AT | Total time spent in the system |
+| Waiting Time (WT) | TAT − BT | Time spent waiting for CPU execution |
+| Response Time (RT) | First CPU start − AT | Time from arrival until first CPU execution |
+| Throughput | Completed processes ÷ Total measured interval | Number of completed processes per unit of time |
+
+**Abbreviations:**
+
+- **AT:** Arrival Time
+- **BT:** Burst Time
+- **CT:** Completion Time
+- **TAT:** Turnaround Time
+- **WT:** Waiting Time
+- **RT:** Response Time
+
+The throughput interval is calculated from the first arrival to the last completion. If the interval is zero, throughput is defined as zero.
+
+## Gantt Chart and Algorithm Comparison
+
+The simulator generates a Gantt chart from the calculated execution timeline. It displays process execution segments, preemption where applicable, and CPU idle periods.
+
+The **Compare All Algorithms** feature runs the supported algorithm variants using the same process data so their results can be compared.
+
+The results help demonstrate the trade-offs between waiting time, response time, fairness, and scheduling efficiency.
+
+## Shared-File Access Demonstration
+
+The simulator includes a conceptual demonstration connecting processes to shared-file operations.
+
+Users can specify:
+
+- A file associated with a process.
+- A read or write operation.
+- An optional second file.
+
+The demonstration identifies overlapping file access involving at least one writer as a potential conflict. It also flags potential circular-wait situations when overlapping processes hold files needed by one another.
+
+**Important limitation:** This is an educational demonstration only. It does not change the CPU scheduling timeline or calculated metrics. It is not a real file system, synchronization mechanism, mutex/semaphore implementation, or complete operating-system deadlock detector.
+
+## Technologies Used
+
+- **HTML5** — application structure.
+- **CSS3** — styling and responsive layout.
+- **JavaScript** — scheduling algorithms, calculations, validation, and user interaction.
+- **Node.js** — optional execution of automated tests.
+- **Playwright/Chromium** — headless-browser smoke testing, as described in the project test report.
+
+The application can run in a modern web browser without a backend server or database.
+
+## Project Files
+
+| File or Folder | Purpose |
 |---|---|
-| `scheduler.js` | Pure logic: validation, 4 algorithms (5 variants), metrics, file-conflict analysis. No DOM. |
-| `script.js` | UI: table editing, Gantt rendering, results, comparison. |
-| `index.html`, `style.css` | Layout and styling (responsive, light/dark). |
-| `tests.js`, `test-results.txt` | Test harness and its real output. |
+| `index.html` | Main application page |
+| `style.css` | Layout, styling, and responsive design |
+| `scheduler.js` | Scheduling logic, validation, metrics, and file-conflict analysis |
+| `script.js` | User interface, process-table controls, Gantt chart, and results |
+| `tests.js` | Automated tests for scheduling logic |
+| `test-results.txt` | Recorded automated test output |
+| `ui-test-results.txt` | Recorded UI smoke-test results, if included |
+| `ui_test.py` | Browser smoke-test script, if included |
+| `screenshots/` and `shots/` | Project screenshots, if included |
 
-## Algorithms
-- **FCFS** (non-preemptive): earliest arrival first.
-- **SJN** (non-preemptive): shortest burst among *arrived* processes; runs to completion.
-- **Round Robin** (preemptive): configurable quantum; arrivals at the instant a quantum expires are queued before the pre-empted process.
-- **Priority**: non-preemptive, or preemptive (a *strictly* higher priority arrival interrupts). **Lower number = higher priority.**
-- Tie-break everywhere: arrival time, then input order. CPU idle gaps are shown as IDLE.
+The exact files available depend on the contents of the submitted repository.
 
-## Formulas
-TAT = CT − AT · WT = TAT − BT · RT = first CPU start − AT · Throughput = completed ÷ (last CT − first AT) (0 if interval is 0).
+## How to Run Locally
 
-## Shared-file demo (conceptual)
-Each process may name a file, an operation (read/write) and an optional second file. A process is assumed to hold its files from first CPU start to completion. Overlapping holders of one file with at least one writer are flagged as a **conflict**; two overlapping processes holding each other's wanted file are flagged as a **potential deadlock (circular wait)**. It does **not** alter the timeline or metrics, and is not a real file system, mutex/semaphore, or deadlock detector.
+1. Download or clone the repository.
+2. Open the `Assignments/Assignment-01-Process-Scheduling/` folder.
+3. Ensure the application files are in the same folder.
+4. Open `index.html` in a modern web browser.
+5. Enter process data or click **Load Sample Data**.
+6. Select an algorithm and configure its options if required.
+7. Click **Run Simulation** to view the Gantt chart and metrics.
+8. Click **Compare All Algorithms** to compare the supported variants.
 
-## Tests
-`node tests.js` → 52 passed, 0 failed (see `test-results.txt`). Covers sample, single process, equal arrivals, staggered arrivals, idle start, equal priorities, RR (short quantum, early finish), preemptive/non-preemptive priority, validation, shared files, plus invariants (CT ≥ AT, TAT, WT, RT bounds, busy time = ΣBT, no gaps, no overrun) on every algorithm × scenario. A headless-browser smoke test (Playwright/Chromium) also exercised run, compare, validation and file demo without script errors; it was not a full UI test suite.
+No server installation is required for normal local use.
 
-## Requirement checklist
-| Requirement | Where |
+### Running the Tests
+
+If Node.js is installed, open a terminal in the project folder and run:
+
+```bash
+node tests.js
+```
+
+The existing test report records **52 passed and 0 failed**. Run the tests yourself before submission to confirm the current code produces the same result.
+
+## Testing and Validation
+
+The documented tests cover:
+
+- Sample process data.
+- Single-process scheduling.
+- Equal and staggered arrival times.
+- CPU idle periods.
+- Equal priorities.
+- Round Robin with short time quanta and early completion.
+- Preemptive and non-preemptive Priority Scheduling.
+- Invalid input.
+- Shared-file conflicts and potential deadlock cases.
+- Scheduling invariants across algorithms and scenarios.
+
+The project documentation also describes a headless-browser smoke test covering simulation execution, algorithm comparison, input validation, and the shared-file demonstration. This is a smoke test, not a complete UI test suite.
+
+## Requirement Checklist
+
+| Assignment Requirement | Implementation |
 |---|---|
-| FCFS, SJN, RR, Priority | `scheduler.js` `simulate()` |
-| Preemptive & non-preemptive | RR, preemptive priority; others non-preemptive |
-| Varied arrival/burst/priority | process table, sample data |
-| WT, TAT, throughput (+RT) | Results cards/table |
-| Visualisation | Gantt chart (real timeline, idle, split segments) |
-| Process–file link | Shared-file panel |
-| Testable interface | `tests.js` + UI |
+| FCFS scheduling | Implemented in `scheduler.js` |
+| SJN scheduling | Implemented in `scheduler.js` |
+| Round Robin scheduling | Implemented in `scheduler.js` |
+| Priority Scheduling | Preemptive and non-preemptive modes |
+| Different arrival, burst, and priority values | Configurable process table |
+| Waiting and turnaround times | Calculated and displayed |
+| Response time and throughput | Calculated and displayed |
+| Execution visualization | Gantt chart |
+| Algorithm comparison | Compare All Algorithms feature |
+| Process and shared-file interaction | Conceptual shared-file panel |
+| Testing | Automated tests and documented smoke testing |
 
-## Suggested screenshots
-Input table; RR Gantt; RR results; preemptive Priority Gantt; comparison table; shared-file warning; validation error; mobile view.
+## Suggested Screenshots for Submission
 
-## Conclusion (for report)
-The simulator implements FCFS, SJN, Round Robin and Priority scheduling, computing all metrics from the generated timeline. On the sample data, SJN gave the lowest average waiting time and RR the best response time among fair-share policies, illustrating the trade-offs between efficiency and responsiveness.
+Include screenshots of the following, if required by the assignment submission instructions:
+
+1. Main interface and process input table.
+2. FCFS simulation and Gantt chart.
+3. Round Robin simulation and results.
+4. Preemptive Priority Scheduling.
+5. Algorithm comparison results.
+6. Shared-file conflict or potential deadlock warning.
+7. Input validation error.
+8. Responsive or mobile layout.
+
+## Conclusion
+
+The OS Process Scheduling Simulator demonstrates FCFS, SJN, Round Robin, and Priority Scheduling through an interactive browser-based interface. It calculates scheduling metrics from execution timelines, visualizes process execution, compares algorithm variants, and provides a conceptual shared-file conflict demonstration.
+
+The simulator supports learning about the trade-offs between CPU scheduling strategies, including waiting time, response time, fairness, and potential starvation. The shared-file demonstration introduces the concept of resource conflicts and circular wait without claiming to implement a real operating-system synchronization or deadlock-management system.
+
+---
+
+**CS313 — Operating System Concepts**  
+**Assignment 1 — Abasyn University, Islamabad Campus**  
+**Instructor:** Ms. Naveen Ahmed  
+**Semester:** Fall 2026
